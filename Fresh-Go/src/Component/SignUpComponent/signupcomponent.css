@@ -1,0 +1,160 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.signUp-main-container {
+  width: 100%;
+  height: 100%;
+}
+.signUp-inner-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signUp-container {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin: 1%;
+}
+.sign-up-image-user-container {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  padding: 2% 0%;
+}
+.sign-up-user-image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 2px 5px black;
+}
+.sign-up-form-container {
+  width: 100%;
+  padding: 1% 13%;
+}
+
+.sign-up-feature-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+
+.sign-up-feature-container label {
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 1.5% 0;
+}
+.sign-up-feature-container input {
+  outline: none;
+  padding: 3%;
+  background: #80808029;
+  border: none;
+}
+.sign-up-feature-container input:focus {
+  border: 2px solid blue;
+  border-radius: 5px;
+}
+/* .sign-up-feature-container input:focus:nth-child(1){
+    border: 2px solid red;
+} */
+.sign-up-form-container .password {
+  position: relative;
+}
+.sign-up-form-container .password span {
+  position: absolute;
+  right: 5%;
+  top: 55%;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.sign-up-form-container .confirmpassword {
+  position: relative;
+}
+.sign-up-form-container .confirmpassword span {
+  position: absolute;
+  right: 5%;
+  top: 55%;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.sign-up-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 2%;
+}
+
+.sign-up-submit-button {
+  width: 40%;
+  padding: 2%;
+  font-size: 1rem;
+  font-weight: 700;
+  background: blue;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.error-span{
+    color: red;
+}
+
+.sign-up-image-user-container {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  padding: 2% 0%;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+.profile-image-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sign-up-image-user-container::before {
+  content: "Upload";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #80808080;
+  width: 100%;
+  height: 37%;
+  bottom: 10px;
+  color: white;
+  font-size: 0.9rem;
+  left: 0px;
+  font-weight: 300;
+  border-radius: 0px 0px 50px 50px;
+  position: absolute;
+  cursor: pointer;
+}
+.sign-up-user-image {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 2px 5px black;
+}
+
+.register-loader{
+  /* flex: 20%; */
+  padding: 0% 5%;
+}
+
+.register-loader .css-18lrjg1-MuiCircularProgress-root{
+  width: 20px !important; 
+  height: 20px !important;
+  color: white !important;
+}
