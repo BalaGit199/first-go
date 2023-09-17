@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { ImageToBase } from "../../utility/imageToBase";
 import { logIn } from "../../Service/api";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRedux } from "../../redux/userSlice";
 
 function LoginComponent() {
   const registerSchema = yup.object().shape({
@@ -20,12 +22,16 @@ function LoginComponent() {
       .min(5, "Needs Minimum 5 characters")
       .required("This fleid is required"),
   });
+  const userDataval = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  // console.log("check values",userDataval.user)
 
   const onSubmit = async () => {
     const logndata = await logIn(values).then(async (data) => {
       const temp = await data.json();
       if (temp.verify) {
         setIsLoading(true);
+        const setdispatch = await dispatch(loginRedux(temp));
         setTimeout(function () {
           navigate("/");
         }, 3000);
