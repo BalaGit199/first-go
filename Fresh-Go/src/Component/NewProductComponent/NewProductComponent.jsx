@@ -34,6 +34,11 @@ function NewProductComponent() {
     .then(async(data) => {
       const res = await data.json()
       console.log("res data", res);
+      values.name = ""
+      values.category=""
+      values.description=""
+      values.price=""
+      values.image=""
     })
     .catch((err) => {
       console.log("errorss", err);

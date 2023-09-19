@@ -20,6 +20,7 @@ function HeaderComponent() {
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev);
   };
+  console.log("email",process.env.hello)
   return (
     <div className="header-main-container">
       <div className="header-inner-container">
