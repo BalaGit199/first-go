@@ -10,7 +10,6 @@ app.use(express.json({ limit: "10mb" }));
 
 const PORT = process.env.PORT || 8080;
 
-
 // DB_Connection // Server_Connection
 console.log("url", process.env.MONGODB_URL);
 moongose.set("strictQuery", false);
