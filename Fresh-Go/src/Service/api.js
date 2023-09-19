@@ -25,6 +25,17 @@ export const logIn = async(logindata) => {
         },
         body:JSON.stringify(logindata)
     })
+
+}
+export const addNewProduct = async (newProduct) =>{
+  console.log(`${URL}/addNewProduct`)
+  return await fetch(`${URL}/addNewProduct`,{
+    method:"POST",
+    headers:{
+      "content-type":"application/json"
+    },
+    body:JSON.stringify(newProduct)
+  })
 }
 
 // export const deleteUser = async (id) => {

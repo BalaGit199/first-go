@@ -86,3 +86,31 @@ app.post("/login", async (req, res) => {
     })
     .catch((err) => console.log("error occurs", err));
 });
+
+
+
+//product section
+
+//schema
+const newproductSchema = moongose.Schema({
+
+  name:String,
+  category:String,
+  image:String,
+  price:String,
+  description:String,
+
+})
+
+//model
+const newProductMoel = moongose.model("newproduct", newproductSchema)
+
+//api config
+
+app.post("/addNewProduct", async(req,res)=>{ 
+
+  const saveproduct = await newProductMoel(req.body)
+   saveproduct.save()
+   res.send({message:"new product added sucessfully",status:true}) 
+  console.log("Body",req.body)
+})
