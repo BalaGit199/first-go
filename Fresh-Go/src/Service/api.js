@@ -38,6 +38,14 @@ export const addNewProduct = async (newProduct) =>{
   })
 }
 
+export const getAllProduct = async() =>{
+    console.log(`${URL}/allProduct`)
+    return await fetch(`${URL}/allProduct`,{
+       method:"POST",
+       header:{"content-type":"application/json"},
+       body:"Request for prouct data"
+    })
+}
 // export const deleteUser = async (id) => {
 //     return await axios.delete(`${usersUrl}/${id}`);
 // }

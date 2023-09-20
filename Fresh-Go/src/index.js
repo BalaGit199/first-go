@@ -5,11 +5,12 @@ import App from './App';
 import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import userSliceReducer from './redux/userSlice'
-
+import productSliceReducer from './redux/productSlice'
 const store = configureStore({
   reducer:{
 
-    user:userSliceReducer
+    user:userSliceReducer,
+    product:productSliceReducer
 
   }
 })

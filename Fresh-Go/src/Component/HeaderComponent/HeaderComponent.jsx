@@ -11,16 +11,11 @@ function HeaderComponent() {
 
   const userdataval = useSelector((state) => state.user);
   console.log("header state", userdataval.user);
-  // if(userdataval.user.email) {
-  //   (console.log("isempty"))
-  // }else{
-  //   (console.log("is not empty"))
-  // }
 
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev);
   };
-  console.log("email",process.env.APP_ADMIN_GMAIL)
+  console.log("email", process.env.REACT_APP_ADMIN_GMAIL);
   return (
     <div className="header-main-container">
       <div className="header-inner-container">
@@ -47,7 +42,7 @@ function HeaderComponent() {
         </div>
 
         <div className="header-features-container">
-        <div className="header-feature cart">
+          <div className="header-feature cart">
             <Badge badgeContent={4} color="primary">
               <FaShoppingCart color="action" />
             </Badge>
@@ -60,7 +55,10 @@ function HeaderComponent() {
           >
             {userdataval.user.email ? (
               <div className="profile-image-containter">
-                <img src={userdataval.user.image} className="profile-header-image" />
+                <img
+                  src={userdataval.user.image}
+                  className="profile-header-image"
+                />
               </div>
             ) : (
               <FaUserAlt />
@@ -68,15 +66,18 @@ function HeaderComponent() {
           </div>
           {showMenu && (
             <div className="profile-menu-container">
-              <Link
-                to={"newProduct"}
-                className="profile-menu profile-menu-newProduct"
-                onClick={() => {
-                  handleShowMenu();
-                }}
-              >
-                New Product
-              </Link>
+              {userdataval.user.email === process.env.REACT_APP_ADMIN_GMAIL && (
+                <Link
+                  to={"newProduct"}
+                  className="profile-menu profile-menu-newProduct"
+                  onClick={() => {
+                    handleShowMenu();
+                  }}
+                >
+                  New Product
+                </Link>
+              )}
+
               {userdataval.user.email ? (
                 <p className="profile-menu">Log Out</p>
               ) : (

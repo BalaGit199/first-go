@@ -1,0 +1,151 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+.navhome-main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.navhome-inner-main-container {
+  width: 100%;
+}
+.navhome-offer-advs-section {
+  width: 100%;
+  display: flex;
+}
+.navhome-advs-section {
+  flex: 60%;
+}
+.navhome-offer-list-section {
+  flex: 40%;
+}
+.navhome-advs-ship-label {
+  display: flex;
+  width: -moz-fit-content;
+  width: 25%;
+  justify-content: space-evenly;
+  background: #8080801f;
+  margin: 2% 3%;
+  border-radius: 10px;
+  /* cursor: pointer; */
+}
+.navhome-advs-ship-label p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: Roboto, sans-serif;
+}
+.navhome-advs-ship-label img {
+  width: 30px;
+  margin: 1% 0;
+}
+.navhome-advs-description {
+  margin: 2% 3%;
+  font-family: Roboto, sans-serif;
+}
+.navhome-advs-description .navhome-advs-des-header {
+  font-size: 3rem;
+  font-weight: 900;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.navhome-advs-description .navhome-advs-des-header span {
+  color: red;
+}
+.navhome-advs-des-content {
+  line-height: 1.5rem;
+}
+.navhome-offer-list-section {
+  margin: 2% 3%;
+}
+
+.havhome-offer-header {
+  font-size: 2rem;
+  font-weight: 900;
+  text-decoration: underline;
+}
+.navhome-offer-list {
+  display: flex;
+  flex-direction: column;
+}
+.navhome-offer-showmore {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.navhome-offer-list-body {
+  width: 100%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+}
+.nav-offer-list-card-container {
+  width: 50%;
+  padding: 2%;
+  background: white;
+  margin: 2%;
+  cursor: pointer;
+}
+.navhome-offer-list-body .card-image {
+  width: 100%;
+  object-fit: contain;
+}
+.navhome-offer-list-body .card-name {
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navhome-offer-list-body .card-category {
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navhome-offer-list-body .card-price {
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navhome-offer-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.3rem;
+  margin: 1%;
+}
+.navhome-offer-showmore {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 3%;
+}
+.navhome-advs-content-order-btn{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2% 0;
+}
+.navhome-order-btn{
+    padding: 1.5% 3.5%;
+    background: #f52222;
+    border: none;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    align-items: center;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}

@@ -55,7 +55,7 @@ app.post("/signup", async (req, res) => {
   const sendData = await registerModel.findOne(
     { email: email },
     (err, result) => {
-      console.log("resultsss", result);
+      // console.log("resultsss", result);
       console.log("errr", err);
       if (result) {
         res.send({ message: "Email is Already here", verify: false });
@@ -73,7 +73,7 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   registerModel
     .findOne({ email: email }, async (err, result) => {
-      console.log("errr", result);
+      // console.log("errr", result);
       if (result) {
         const temp = await result;
         password === temp.password
@@ -103,14 +103,20 @@ const newproductSchema = moongose.Schema({
 })
 
 //model
-const newProductMoel = moongose.model("newproduct", newproductSchema)
+const newProductModel = moongose.model("newproduct", newproductSchema)
 
 //api config
 
 app.post("/addNewProduct", async(req,res)=>{ 
 
-  const saveproduct = await newProductMoel(req.body)
+  const saveproduct = await newProductModel(req.body)
    saveproduct.save()
    res.send({message:"new product added sucessfully",status:true}) 
-  console.log("Body",req.body)
+  console.log("Body",req.body.name)
+})
+
+app.post('/allProduct',async(req,res) =>{
+     const get_all_product = await newProductModel.find({},(err,result)=>{
+      res.send({message:"All product Send Successfully",data:result,status:true})
+     }).then(console.log("data send successfully")).catch(err => console.log("Error occurs",err))
 })
