@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<HomeComponent />}>
           <Route index element={<NavHomeComponent />} />
           <Route path="menu" element={<MenuComponent />} />
+          <Route path="menu/:id" element={<MenuComponent />} />
           <Route path="about" element={<AboutComponent />} />
           <Route path="contant" element={<ContantComponent />} />
           <Route path="login" element={<LoginComponent />} />

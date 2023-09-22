@@ -3,6 +3,7 @@ import "./headercomponent.css";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import{HashLink as HasLink} from 'react-router-hash-link';
 import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,7 +32,7 @@ function HeaderComponent() {
             <Link to={""}>Home</Link>
           </div>
           <div className="menu-list-head list2">
-            <Link to={"menu"}>Menu</Link>
+            <HasLink to={"#navhome-all-category-container"}>Menu</HasLink>
           </div>
           <div className="menu-list-head list3">
             <Link to={"about"}>About</Link>
