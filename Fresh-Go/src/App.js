@@ -14,15 +14,14 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeComponent />}>
           <Route index element={<NavHomeComponent />} />
-          <Route path="menu" element={<MenuComponent />} />
+          <Route path="/menu" element={<MenuComponent />} />
           <Route path="menu/:id" element={<MenuComponent />} />
-          <Route path="about" element={<AboutComponent />} />
-          <Route path="contant" element={<ContantComponent />} />
-          <Route path="login" element={<LoginComponent />} />
-          <Route path="newProduct" element={<NewProductComponent />} />
-          <Route path="signUp" element={<SignUpComponent />} />
-          <Route path="logIn" element={<LoginComponent />} />
-
+          <Route path="/about" element={<AboutComponent />} />
+          <Route path="/contant" element={<ContantComponent />} />
+          <Route path="/login" element={<LoginComponent />} />
+          <Route path="/newProduct" element={<NewProductComponent />} />
+          <Route path="/signUp" element={<SignUpComponent />} />
+          <Route path="/logIn" element={<LoginComponent />} />
         </Route>
       </Routes>
     </BrowserRouter>

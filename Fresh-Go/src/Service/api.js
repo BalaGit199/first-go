@@ -46,10 +46,24 @@ export const getAllProduct = async() =>{
        body:"Request for prouct data"
     })
 }
-// export const deleteUser = async (id) => {
-//     return await axios.delete(`${usersUrl}/${id}`);
-// }
 
-// export const editUser = async (id, user) => {
-//     return await axios.put(`${usersUrl}/${id}`, user)
-// }
+export const getAllCartData = async () =>{
+  console.log(`${URL}/cartAll`)
+  return await fetch(`${URL}/cartAll`,{
+    method:"POST",
+    header:{"content-type":"json/application"},
+    body:{message:"Get Cart data Successfully"}
+  })
+}
+
+export const addItemsCart =async (cartItem) =>{
+  console.log(`${URL}/addCart`)
+  console.log("cart api data",cartItem)
+  return await fetch(`${URL}/addCart`,{
+    method:"POST",
+    headers:{
+      "content-type":"application/json"
+    },
+    body:JSON.stringify(cartItem)
+  })
+}

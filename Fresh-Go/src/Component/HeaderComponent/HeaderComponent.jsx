@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./headercomponent.css";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
@@ -7,11 +7,30 @@ import{HashLink as HasLink} from 'react-router-hash-link';
 import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
 
+import {getAllCartData} from '../../Service/api'
+
 function HeaderComponent() {
   const [showMenu, setShowMenu] = useState(false);
 
   const userdataval = useSelector((state) => state.user);
   console.log("header state", userdataval.user);
+
+  useEffect(() => {
+    const getCartAllData = async() =>{
+      try{
+         const getCartData = await getAllCartData().then(async(data)=>{
+          const cartData = await data.json()
+          console.log("Cart Data", cartData)
+         })
+
+      }
+      catch(err){
+        console.log("error",err.stack)
+      }
+    }
+
+    getCartAllData();
+  })
 
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev);

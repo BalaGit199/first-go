@@ -65,6 +65,10 @@ function NavHomeComponent() {
 
     console.log("valuess chamges")
   },[allDataCheck])
+
+  const cardFeature = (e) =>{
+     e.stopPropagation();
+  }
   console.log("product redux",  productredux.allProduct);
 
   return (
@@ -185,7 +189,7 @@ function NavHomeComponent() {
                       {data.price}
                     </div>
                     <div className="navhome-all-product-btn-container">
-                      <button className="navhome-all-home-button"><Link to={`menu/${data._id}`}>Add Cart</Link></button>
+                      <button className="navhome-all-home-button" onClick={(e)=>{cardFeature(e)}}><Link to={`menu/${data._id}`}>Add Cart</Link></button>
                     </div>
                   </div>
                 ))}

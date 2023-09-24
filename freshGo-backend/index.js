@@ -77,8 +77,12 @@ app.post("/login", async (req, res) => {
       if (result) {
         const temp = await result;
         password === temp.password
-          ? res.send({ message: "Log in sucessfully", verify: true, userdata:temp})
-          : res.send({ message: "Incorrect password", verify: false })
+          ? res.send({
+              message: "Log in sucessfully",
+              verify: true,
+              userdata: temp,
+            })
+          : res.send({ message: "Incorrect password", verify: false });
       } else {
         res.send({ message: "invalid email", verify: false });
         console.log("invalid email");
@@ -87,36 +91,97 @@ app.post("/login", async (req, res) => {
     .catch((err) => console.log("error occurs", err));
 });
 
-
-
 //product section
 
 //schema
 const newproductSchema = moongose.Schema({
-
-  name:String,
-  category:String,
-  image:String,
-  price:String,
-  description:String,
-
-})
+  name: String,
+  category: String,
+  image: String,
+  price: String,
+  description: String,
+});
 
 //model
-const newProductModel = moongose.model("newproduct", newproductSchema)
+const newProductModel = moongose.model("newproduct", newproductSchema);
 
 //api config
 
-app.post("/addNewProduct", async(req,res)=>{ 
+app.post("/addNewProduct", async (req, res) => {
+  const saveproduct = await newProductModel(req.body);
+  saveproduct.save();
+  res.send({ message: "new product added sucessfully", status: true });
+  console.log("Body", req.body.name);
+});
 
-  const saveproduct = await newProductModel(req.body)
-   saveproduct.save()
-   res.send({message:"new product added sucessfully",status:true}) 
-  console.log("Body",req.body.name)
-})
+app.post("/allProduct", async (req, res) => {
+  const get_all_product = await newProductModel
+    .find({}, (err, result) => {
+      res.send({
+        message: "All product Send Successfully",
+        data: result,
+        status: true,
+      });
+    })
+    .then(console.log("data send successfully"))
+    .catch((err) => console.log("Error occurs", err));
+});
 
-app.post('/allProduct',async(req,res) =>{
-     const get_all_product = await newProductModel.find({},(err,result)=>{
-      res.send({message:"All product Send Successfully",data:result,status:true})
-     }).then(console.log("data send successfully")).catch(err => console.log("Error occurs",err))
-})
+//cart section
+
+const cartdataSchema = moongose.Schema({
+  _id: String,
+  name: String,
+  category: String,
+  image: String,
+  price: String,
+  description: String,
+  quantity: Number,
+});
+//Model
+
+const cartModel = moongose.model("CartItems", cartdataSchema);
+
+// Cart Api config
+
+app.post("/cartAll", async (req, res) => {
+  const getAllCartItems = await cartModel.find({}, (err, result) => {
+    res.send({ message: "Cart All Data", data: result, status: true });
+  });
+});
+
+app.post("/addCart", async (req, res) => {
+  const { name, _id, category, price, description, image } = req.body;
+  const addCart = await cartModel.findOne({ _id: _id }, async (err, result) => {
+    if (!result) {
+      const values = cartdataSchema;
+      values.name = name;
+      values._id = _id;
+      values.category = category;
+      values.price = price;
+      values.description = description;
+      values.image = image;
+      values.quantity = 1;
+      console.log("valuess", values.price);
+      const addItem = await cartModel(values);
+      addItem.save();
+      res.send({ message: "New item add in cart " });
+    } else {
+      result.quantity += 1;
+      const addItem = await cartModel(result);
+      addItem.save();
+      console.log("check quantity", result.quantity);
+      console.log("increase quantity");
+      res.send({ message: "Add Cart Quantity" });
+    }
+  });
+  console.log("add cart value", _id);
+});
+
+app.post("/modifyQty", (req, res) => {
+  res.send({ message: "add cart is working" });
+});
+
+app.post("/deleteCartItem", (req, res) => {
+  res.send({ message: "delete cart is working" });
+});
