@@ -1,6 +1,7 @@
 .menu-product-service-main-container {
   width: 100%;
   height: 100%;
+  display: flex;
 }
 .menu-product-service-inner-container {
   width: 100%;
@@ -98,4 +99,23 @@
   align-items: flex-start;
   width: 100%;
   height: 45%;
+}
+.cartitemlist{
+   width: 100px;
+   /* height: 100%; */
+   background-color: aqua;
+   position: relative;
+   margin: 30px;
+}
+
+.cartitemlist::after{
+  content: '';
+    background-color: white;
+    width: 30%;
+    height: 59px;
+    top: -56px;
+    display: flex;
+    position: absolute;
+    clip-path: polygon(40% 56%, 5% 100%, 79% 100%);
+    z-index: 10;
 }

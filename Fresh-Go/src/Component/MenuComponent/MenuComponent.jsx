@@ -1,19 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { BsCurrencyRupee } from "react-icons/bs";
 import "./menucomponent.css";
 import { Link } from "react-router-dom";
-import { addItemsCart } from "../../Service/api";
+import { addItemsCart, getAllCartData } from "../../Service/api";
+import { setAllCartdata,setLengthCart } from "../../redux/cartSlice";
+import { ClickAwayListener } from "@mui/material";
 
 function MenuComponent() {
   const params = useParams();
   const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]);
+  const [checkAllCart, setCheckAllCart] = useState(false);
+  const [updateRedux, setUpdateRedux] = useState(false);
+  const [allCartData, setAllCartData] = useState([]);
   const allProductRedux = useSelector((state) => state.product);
+  const cartredux = useSelector((state) => state.cart);
+  const cartDispatch = useDispatch();
   console.log("product state", allProductRedux.allProduct);
 
+  const getAll_CartData = async () => {
+    try {
+      const getCartData = await getAllCartData().then(async (data) => {
+        const res = await data.json();
+        const setallcart = await setAllCartData((prev) => (prev = res.data));
+        setUpdateRedux(prev => prev = !prev)
+        console.log("response all data ", res);
+      });
+    } catch (err) {
+      console.log("errorrs", err.stack);
+    }
+  };
+
+  useEffect(() => {
+    const setCartDispatch = cartDispatch(setAllCartdata(allCartData));
+    const setCartlength = cartDispatch(setLengthCart(allCartData.length))
+    console.log("datata", allCartData);
+  }, [updateRedux]);
+
+  useEffect(() => {
+    // getAll_CartData();
+  });
+
   useEffect(async () => {
+    getAll_CartData()
     const innerContainer = await document.getElementById(
       "menu-product-service-main-container"
     );
@@ -30,9 +61,28 @@ function MenuComponent() {
     );
     setSimilarProducts((data) => (data = similarCate));
     console.log("similar products", similarCate);
-
     console.log("shop data", findProductData[0]);
   }, []);
+
+  const addToCart = async (cartitem) => {
+    window.scrollTo({ top: "0", behavior: "smooth" });
+    const cartItemApi = async (cartitem) => {
+      try {
+        const addItemCart = await addItemsCart(cartitem).then(async (data) => {
+          const cartData = await data.json();
+          setCheckAllCart((prev) => (prev = !prev));
+          console.log("cart dataa res", cartData);
+          console.log("cart dataa res11111");
+        });
+      } catch (err) {
+        console.log("errorrr", err.stack);
+      }
+    };
+    await cartItemApi(cartitem);
+    const setTime = setTimeout(getAll_CartData, 2000);
+
+    console.log("cart item", cartitem);
+  };
 
   useEffect(async () => {
     const findProductData = await allProductRedux.allProduct.filter(
@@ -43,23 +93,7 @@ function MenuComponent() {
     console.log("change paramss", product);
   }, [params.id]);
 
-  const addToCart = (cartitem) => {
-    window.scrollTo({ top: "0", behavior: "smooth" });
-    const cartItemApi = async (cartitem) => {
-      try {
-        const addItemCart = await addItemsCart(cartitem).then(async (data) => {
-          const cartData = await data.json();
-          console.log("cart dataa res", cartData);
-        });
-      } catch (err) {
-        console.log("errorrr", err.stack);
-      }
-    };
-    cartItemApi(cartitem);
-    console.log("cart item", cartitem);
-  };
-
-  console.log("paramss", params.id);
+  console.log("paramss", cartredux.allCartData);
   return (
     <div
       className="menu-product-service-main-container"
@@ -142,6 +176,7 @@ function MenuComponent() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

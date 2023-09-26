@@ -6,12 +6,13 @@ import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import userSliceReducer from './redux/userSlice'
 import productSliceReducer from './redux/productSlice'
+import cartSliceReducer from './redux/cartSlice'
 const store = configureStore({
   reducer:{
 
     user:userSliceReducer,
-    product:productSliceReducer
-
+    product:productSliceReducer,
+    cart:cartSliceReducer
   }
 })
 

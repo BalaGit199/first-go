@@ -13,9 +13,10 @@ function NavHomeComponent() {
   const productDispatch = useDispatch();
   const [offerList, setOfferList] = useState([]);
   const [allProductList, setAllProductList] = useState([]);
+  const [allCartList, setAllCartList] = useState([]);
   const productredux = useSelector((state) => state.product);
-
-  const [allDataCheck,setAllDataCheck] =useState(false)
+  const cartredex = useSelector((state) => state.cart);
+  const [allDataCheck, setAllDataCheck] = useState(false);
 
   const all_Category_list = [
     { category: "Fruits", image: "friuts123.jpg" },
@@ -38,7 +39,6 @@ function NavHomeComponent() {
       // console.log("temp value", temp.clientHeight, temp.clientWidth);
     }
     // console.log("categoryContainer", categoryContainer.children[5].clientWidth);
-
   });
   useEffect(() => {
     const allPageData = () => {
@@ -47,29 +47,32 @@ function NavHomeComponent() {
           const res = await data.json();
           const setProductDispatch = await productDispatch(
             setProductData(res.data)
-          )
+          );
           const offerlist = await setOfferList(res.data.slice(0, 2));
           console.log("offerlist", offerList);
-          setAllDataCheck(true)
-          console.log("All product data",);
+          setAllDataCheck(true);
+          console.log("All product data");
         });
       } catch (err) {
         console.log("errrors", err.stack);
       }
     };
     allPageData();
-    // console.log("check data",productredux.allProduct)
   }, []);
-  useEffect(async()=>{
-    const setAllProuct = await setAllProductList(prev => prev = [...productredux.allProduct]);
+  useEffect(async () => {
+    const setAllProuct = await setAllProductList(
+      (prev) => (prev = [...productredux.allProduct])
+    );
+    const setAllCart = await setAllCartList(
+      (prev) => (prev = [...cartredex.allCartData])
+    );
+    console.log("valuess chamges");
+  }, [allDataCheck]);
 
-    console.log("valuess chamges")
-  },[allDataCheck])
-
-  const cardFeature = (e) =>{
-     e.stopPropagation();
-  }
-  console.log("product redux",  productredux.allProduct);
+  const cardFeature = (e) => {
+    e.stopPropagation();
+  };
+  console.log("product redux", productredux.allProduct);
 
   return (
     <div className="navhome-main-container">
@@ -140,7 +143,10 @@ function NavHomeComponent() {
         <div className="navhome-vegetable-slider-container">
           <VegetableSliderComponent />
         </div>
-        <div className="navhome-all-category-container" id="navhome-all-category-container">
+        <div
+          className="navhome-all-category-container"
+          id="navhome-all-category-container"
+        >
           <div className="navhome-all-category-inner-container">
             <div className="navhome-all-category-header">Our Categories</div>
             <div className="navhome-all-category-body">
@@ -188,8 +194,23 @@ function NavHomeComponent() {
                       <BsCurrencyRupee />
                       {data.price}
                     </div>
+                    {allCartList.map(
+                      (val, i) =>
+                        val._id === data._id && (
+                          <div className="navhome-product-label" key={i}>
+                            Already in cart
+                          </div>
+                        )
+                    )}
                     <div className="navhome-all-product-btn-container">
-                      <button className="navhome-all-home-button" onClick={(e)=>{cardFeature(e)}}><Link to={`menu/${data._id}`}>Add Cart</Link></button>
+                      <button
+                        className="navhome-all-home-button"
+                        onClick={(e) => {
+                          cardFeature(e);
+                        }}
+                      >
+                        <Link to={`menu/${data._id}`}>Add Cart</Link>
+                      </button>
                     </div>
                   </div>
                 ))}
