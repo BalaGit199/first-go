@@ -4,7 +4,10 @@
   display: flex;
 }
 .menu-product-service-inner-container {
-  width: 100%;
+  width: 80%;
+}
+.cart-silder-menu-maincontainer{
+  width: 20%;
 }
 .menu-service-product-details {
   display: flex;

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { addItemsCart, getAllCartData } from "../../Service/api";
 import { setAllCartdata,setLengthCart } from "../../redux/cartSlice";
 import { ClickAwayListener } from "@mui/material";
+import CartSilderComponent from "../CartSliderComponent/CartSilderComponent";
 
 function MenuComponent() {
   const params = useParams();
@@ -176,7 +177,9 @@ function MenuComponent() {
           </div>
         </div>
       </div>
-
+      <div className="cart-silder-menu-maincontainer">
+      <CartSilderComponent/>
+      </div>
     </div>
   );
 }
